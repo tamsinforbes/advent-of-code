@@ -32,29 +32,29 @@ result = hashlib.md5(test_input.encode())
 # result = hashlib.md5(b"")
 #print(result.hexdigest())
 
-def mine_advent_coin(secret_key, start_guess=100000, lead_zeroes=5):
-    """
-    Input: 
-        secret_key: string
-        start_guess: starting number
-        lead_zeroes: number of lead zeroes required in hexadecimal hash
-    """
+# def mine_advent_coin(secret_key, start_guess=100000, lead_zeroes=5):
+#     """
+#     Input: 
+#         secret_key: string
+#         start_guess: starting number
+#         lead_zeroes: number of lead zeroes required in hexadecimal hash
+#     """
 
-    test_input = secret_key + str(start_guess)
-    start_result = hashlib.md5(test_input.encode())
-    hex = start_result.hexdigest()
+#     test_input = secret_key + str(start_guess)
+#     start_result = hashlib.md5(test_input.encode())
+#     hex = start_result.hexdigest()
 
-    if hex[0:5] == "00000":
-        print(f"found it")
-        print(hex)
-    else:
-        print("sad")
+#     if hex[0:5] == "00000":
+#         print(f"found it")
+#         print(hex)
+#     else:
+#         print("sad")
     
-    while hex[0:5] != "00000":
-        test_input = secret_key + str(start_guess+=1)
-        result = hashlib.md5(test_input.encode())
-        hex = result.hexdigest()
-    return result.hexdigest()
+#     while hex[0:5] != "00000":
+#         test_input = secret_key + str(start_guess+=1)
+#         result = hashlib.md5(test_input.encode())
+#         hex = result.hexdigest()
+#     return result.hexdigest()
 
-check = mine_advent_coin(secret_key="abcdef", start_guess=609041)
-print(check)
+# check = mine_advent_coin(secret_key="abcdef", start_guess=609041)
+# print(check)

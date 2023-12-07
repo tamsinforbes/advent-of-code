@@ -32,8 +32,8 @@ light-to-temperature map:
 0 5 40
 
 temperature-to-humidity map:
-0 69 1
 1 0 69
+0 69 1
 
 humidity-to-location map:
 60 56 37

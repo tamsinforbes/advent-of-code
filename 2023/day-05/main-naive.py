@@ -50,6 +50,7 @@ print(f"Part 1 answer with data: {filename}: {lowest_location}")
 
 # Part 1 test answer: 35
 # Part 1 data answer: 51580674
+# Part 1 test2 answer: 7
 
 
 # ------------ PART 2 -------------
@@ -94,4 +95,5 @@ print(f"Estimated time to process 1680883088 (1.6 billion) seeds: {(toc - tic) /
 # Estimated time to process 1680883088 (1.6 billion) seeds: 22.247815221785093 hours
 
 # Part 2 test answer: 46
-# Part 2 data answer: re-read the question!!!!
+# Part 2 data answer: !!! re-read the question !!!
+# Part 2 test2 answer: 40

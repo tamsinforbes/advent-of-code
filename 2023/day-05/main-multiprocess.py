@@ -107,12 +107,14 @@ def seed_to_location(s):
             source_end=d2[key][2])
     return s
 
+
 # Multiprocessing
 tic = timeit.default_timer()
 
-# seeds chunks
-n = 170000000
-#n = 100000
+# seeds chunks 
+num_of_chunks = 10
+n = round(len(seeds) / num_of_chunks)
+
 chunks = [seeds[i:i + n] for i in range(0, len(seeds), n)]
 #print(len(chunks))
 
@@ -135,11 +137,11 @@ toc = timeit.default_timer()
 print(f"Part 2 time taken to map {total_seeds} seeds: {toc - tic} seconds")
 #print(f"Part 2 estimated time for 1.7 billion seeds: {(toc - tic) / total_seeds * 1700000000 / 60 / 60} hours")
 
-# Part 2 answer using data.txt: 99,751,240
-# In chunk index 4, found after about 30 mins
-# So in the middle of the range
+# # Part 2 answer using data.txt: 99,751,240
+# # In chunk index 4, found after about 30 mins
+# # So in the middle of the range
 
-# [189555255, 726585356, 828243961, 239722699, 99751240, 2314484766, 270062277, 1139784462, 868993622, 105230362]
-# 99751240
-# Part 2 lowest location using: data.txt: 99751240
-# Part 2 time taken to map 1680883088 seeds: 4809.141869252999 seconds: 1.3 hours
+# # [189555255, 726585356, 828243961, 239722699, 99751240, 2314484766, 270062277, 1139784462, 868993622, 105230362]
+# # 99751240
+# # Part 2 lowest location using: data.txt: 99751240
+# # Part 2 time taken to map 1680883088 seeds: 4809.141869252999 seconds: 1.3 hours

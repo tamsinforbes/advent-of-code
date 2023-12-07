@@ -107,29 +107,6 @@ def seed_to_location(s):
             source_end=d2[key][2])
     return s
 
-
-
-
-
-# # Multiprocessing
-# tic = timeit.default_timer()
-# def main():
-#     pool = mp.Pool(mp.cpu_count())
-#     locations = pool.map(seed_to_location, seeds)
-
-#     print(f"Part 2 lowest location using: {filename}: {min(np.array(locations))}")
-
-# if __name__ == "__main__":
-#     main()
-
-# toc = timeit.default_timer()
-# print(f"Part 2 time taken to map {total_seeds} seeds: {toc - tic} seconds")
-# print(f"Part 2 estimated time for 1.7 billion seeds: {(toc - tic) / total_seeds * 1700000000 / 60 / 60} hours")
-
-
-
-
-
 # Multiprocessing
 tic = timeit.default_timer()
 

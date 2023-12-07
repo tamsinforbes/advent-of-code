@@ -2,9 +2,9 @@ import re
 import pandas as pd
 import numpy as np
 from itertools import islice
+import timeit
 
-
-filename = "test.txt"
+filename = "data-trunc.txt"
 # NB: Altered input data to put the seed values on the next line so the layout is
 # the same for each group
 # No gaps in the ranges, just before or after
@@ -18,8 +18,8 @@ with open(filename, "r") as f:
 
 # Pop (get & remove) seeds from dict
 seeds = d.pop("seeds")[0]
-print(f"Seeds:\n{seeds}")
-print(f"Dict of mappings:\n{d}")
+# print(f"Seeds:\n{seeds}")
+# print(f"Dict of mappings:\n{d}")
 
 # function to get next map
 def find_map(start, sorted_map):
@@ -46,7 +46,7 @@ for s in seeds:
 
 # Submit the lowest location
 lowest_location = min(np.array(locations))
-print(f"Part 1 answer: {lowest_location}")
+print(f"Part 1 answer with data: {filename}: {lowest_location}")
 
 # Part 1 test answer: 35
 # Part 1 data answer: 51580674
@@ -72,18 +72,27 @@ for s, r in zip(seeds_start, seed_ranges):
 seeds = np.concatenate(seeds).ravel()
 
 # Now what was the actual question?
-# print(seeds)
+tic = timeit.default_timer()
 locations = []
 for s in seeds:
     #print(f"Start seed: {s}")
-    mappings = [s]
     for key in d:
         s = find_map(start=s, sorted_map=d[key])
     locations.append(s)
 
 # Find all the locations and submit the lowest location
 lowest_location = min(np.array(locations))
-print(f"Part 2 answer: {lowest_location}")
+print(f"Part 2 answer with data: {filename}: {lowest_location}")
+toc = timeit.default_timer()
+
+total_seeds = sum(seed_ranges)
+print(f"Time taken to process {total_seeds} seeds: {toc - tic} seconds")
+print(f"Estimated time to process 1680883088 (1.6 billion) seeds: {(toc - tic) / total_seeds * 1680883088 / 60 / 60} hours")
+
+# Part 1 answer with data: data-trunc.txt: 90902678
+# Part 2 answer with data: data-trunc.txt: 433589209
+# Time taken to process 100000 seeds: 4.7648843259958085 seconds
+# Estimated time to process 1680883088 (1.6 billion) seeds: 22.247815221785093 hours
 
 # Part 2 test answer: 46
 # Part 2 data answer: !!! re-read the question !!!

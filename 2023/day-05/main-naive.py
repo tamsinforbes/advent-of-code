@@ -50,6 +50,7 @@ print(f"Part 1 answer: {lowest_location}")
 
 # Part 1 test answer: 35
 # Part 1 data answer: 51580674
+# Part 1 test2 answer: 7
 
 
 # ------------ PART 2 -------------
@@ -85,4 +86,5 @@ lowest_location = min(np.array(locations))
 print(f"Part 2 answer: {lowest_location}")
 
 # Part 2 test answer: 46
-# Part 2 data answer: re-read the question!!!!
+# Part 2 data answer: !!! re-read the question !!!
+# Part 2 test2 answer: 40

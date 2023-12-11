@@ -61,3 +61,4 @@ for d in data:
     previous_values.append(get_previous(d))
 #print(f"Previous values: {previous_values}")
 print(f"Part 2 solution with {filename}: Sum of previous values in sequences: {sum(previous_values)}")
+# Part 2 solution with data.txt: Sum of previous values in sequences: 1057

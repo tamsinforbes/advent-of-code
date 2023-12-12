@@ -2,3 +2,7 @@ word2number
 future
 pandas
 numpy
+#combinatorics
+partition
+sympy
+exrex

@@ -17,7 +17,7 @@ arr = np.genfromtxt(
 # print(arr)
 
 # transpose array, get string of every row (col)
-# for each row split at # roll the round rocks 0
+# for each row split at the fixed rocks (#) roll the round rocks (O)
 # left (north) and join back with #
 
 def tilt_west(arr):
@@ -36,7 +36,7 @@ def tilt_west(arr):
         rejoin_parts = [''.join(s) for s in sorted_parts]
         # join each part with # into a string
         rejoin_string = "#".join(rejoin_parts)
-        # now split it into individual elements to got back into array
+        # now split it into individual elements to go back into array
         tilted.append(list(rejoin_string))
     
     return np.array(tilted)
@@ -117,11 +117,9 @@ print(f"Part 1 with {filename}: total North beam load when tilted North: {part_1
 # ----------- PART 2 --------------
 # Spin cycle tilts north, west, south, east in that order
 # run spin cycle 1000,000,000 times (except don't)
-# after maybe 2 spin cycles the rocks will be in their final positions
-# Or repeat until no more change.
 # There must be some repeating cycle; find the cycle; work out what part
 # of the cycle it is on at the trillionth spin - that is the answer
-# continue spinning until current spin equlas first spin; this is the repeat point
+# continue spinning until current spin equals first spin; this is the repeat point
 # Doesn't matter if Part 1 north tilt is included or not since the first
 # spin starts by tilting north and two tilts in the same direction have the same effect
 

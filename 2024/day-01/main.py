@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 
 # -----------------------------------------
@@ -32,27 +33,8 @@ import numpy as np
 # order each list
 # stick in an array/df, find the diff between each col and sum to get the total diff
 
-# def read_two_column_file(file_name):
-#     with open(file_name, 'r') as data:
-#         x = []
-#         y = []
-#         for line in data:
-#             p = line.split()
-#             x.append(float(p[0]))
-#             y.append(float(p[1]))
-
-#     return np.array(x), np.array(y)
-
-# x, y = read_two_column_file(file_name="2024/day-01/test-01.txt")
-
-# print(np.sort(x)) 
-# print(np.sort(y))
-# print(abs(np.sort(x)-np.sort(y)))
-# print(int(sum(abs(np.sort(x)-np.sort(y)))))
-
-
-def sum_of_absolute_diffs_from_ordered_lists(file_name):
-  with open(file_name, 'r') as data:
+def sum_of_absolute_diffs_from_ordered_lists(filename):
+  with open(filename, 'r') as data:
       x = []
       y = []
       for line in data:
@@ -63,10 +45,10 @@ def sum_of_absolute_diffs_from_ordered_lists(file_name):
   result = int(sum(abs(np.sort(np.array(x))-np.sort(np.array(y)))))
   return result
 
-# test_result = sum_of_absolute_diffs_from_ordered_lists(file_name="2024/day-01/test-01.txt")
+# test_result = sum_of_absolute_diffs_from_ordered_lists(filename="2024/day-01/test-01.txt")
 # print(f"Part 1 test answer: {test_result}")
 
-# part_1_answer = sum_of_absolute_diffs_from_ordered_lists(file_name="2024/day-01/data.txt")
+# part_1_answer = sum_of_absolute_diffs_from_ordered_lists(filename="2024/day-01/data.txt")
 # print(f"Part 1 final answer: {part_1_answer}")
 
 # Part 1 final answer: 1938424
@@ -101,3 +83,49 @@ def sum_of_absolute_diffs_from_ordered_lists(file_name):
 
 # Once again consider your left and right lists. What is their similarity score?
 
+# The way described above requires repeatedly counting in the right list
+# This is not necessary: I propose this formula:
+# For each list find the frequency of each number; 
+# left list: 3:3, 4:1, 2:1, 1:1
+# right list: 4:1, 3:3, 5:1, 9:1
+# then join on the number value then multiply number by freq in each list and sum the results
+# num L-freq R-freq res
+#   1      1      0   0
+#   2      1      0   0
+#   3      3      3  27
+#   4      1      1   4
+#   5      0      1   0
+#   9      0      1   0
+
+# Total = 27 + 4 = 31
+
+def get_similarity_score(filename):
+  with open(filename, 'r') as data:
+    x = []
+    y = []
+    for line in data:
+        p = line.split()
+        x.append(int(p[0]))
+        y.append(int(p[1]))
+  
+  # create dfs of counts, make values the key or index so as to concat on this axis
+  unique, counts = np.unique(np.array(x), return_counts=True)
+  left_df = pd.DataFrame(data={"key": unique, "left_count": counts}).set_index("key")
+  unique, counts = np.unique(np.array(y), return_counts=True)
+  right_df = pd.DataFrame(data={"key": unique, "right_count": counts}).set_index("key")
+
+  # full union join dfs
+  df = pd.concat([left_df, right_df], axis=1)
+  df = df.fillna(0)
+  df["score"] = df.index * df["left_count"] * df["right_count"]
+  similarity_score = int(sum(df["score"]))
+
+  return similarity_score
+
+test_score = get_similarity_score(filename="2024/day-01/test-01.txt")
+print(f"Part 2 test similarity score: {test_score}")
+# Part 2 test similarity score: 31
+
+score = get_similarity_score(filename="2024/day-01/data.txt")
+print(f"Part 2 final answer similarity score: {score}")
+# Part 2 final answer similarity score: 22014209

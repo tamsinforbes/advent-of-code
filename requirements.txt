@@ -6,4 +6,4 @@ numpy
 partition
 sympy
 exrex
-multiprocessing
+# multiprocessing

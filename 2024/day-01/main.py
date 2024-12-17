@@ -45,11 +45,11 @@ def sum_of_absolute_diffs_from_ordered_lists(filename):
   result = int(sum(abs(np.sort(np.array(x))-np.sort(np.array(y)))))
   return result
 
-# test_result = sum_of_absolute_diffs_from_ordered_lists(filename="2024/day-01/test-01.txt")
-# print(f"Part 1 test answer: {test_result}")
+test_result = sum_of_absolute_diffs_from_ordered_lists(filename="2024/day-01/test-1.txt")
+print(f"Part 1 test answer: {test_result}")
 
-# part_1_answer = sum_of_absolute_diffs_from_ordered_lists(filename="2024/day-01/data.txt")
-# print(f"Part 1 final answer: {part_1_answer}")
+part_1_answer = sum_of_absolute_diffs_from_ordered_lists(filename="2024/day-01/data.txt")
+print(f"Part 1 final answer: {part_1_answer}")
 
 # Part 1 final answer: 1938424
 
@@ -122,7 +122,7 @@ def get_similarity_score(filename):
 
   return similarity_score
 
-test_score = get_similarity_score(filename="2024/day-01/test-01.txt")
+test_score = get_similarity_score(filename="2024/day-01/test-1.txt")
 print(f"Part 2 test similarity score: {test_score}")
 # Part 2 test similarity score: 31
 
